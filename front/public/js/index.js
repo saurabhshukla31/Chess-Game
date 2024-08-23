@@ -5,6 +5,27 @@ var $status = $("#status");
 var $pgn = $("#pgn");
 let gameOver = false;
 
+var pieceUrls = {
+  wQ: "https://i.ibb.co/F4B94fn/wq.png",
+  wR: "https://i.ibb.co/J50pt4b/wr.png",
+  wP: "https://i.ibb.co/McrgNVt/wp.png",
+  wN: "https://i.ibb.co/xXXV0zj/wn.png",
+  wK: "https://i.ibb.co/tcLhwCb/wk.png",
+  wB: "https://i.ibb.co/W6MQdGM/wb.png",
+  bR: "https://i.ibb.co/6scnpsX/br.png",
+  bQ: "https://i.ibb.co/QQG6GZw/bq.png",
+  bP: "https://i.ibb.co/Pg15r7B/bp.png",
+  bN: "https://i.ibb.co/CzxSfx8/bn.png",
+  bK: "https://i.ibb.co/DKSRBMC/bk.png",
+};
+
+// Fallback URL
+var fallbackPieceUrl = "https://i.ibb.co/PCHzSzK/bb.png";
+
+function getPieceThemeUrl(piece) {
+  return pieceUrls[piece] || fallbackPieceUrl;
+}
+
 function onDragStart(source, piece, position, orientation) {
   // do not pick up pieces if the game is over
   if (game.game_over()) return false;
@@ -40,7 +61,6 @@ function onDrop(source, target) {
   if (move === null) return "snapback";
 
   socket.emit("move", theMove);
-
   updateStatus();
 }
 
@@ -92,16 +112,26 @@ function updateStatus() {
   $pgn.html(game.pgn());
 }
 
+function pieceTheme(piece) {
+  return getPieceThemeUrl(piece);
+}
+
 var config = {
   draggable: true,
   position: "start",
   onDragStart: onDragStart,
   onDrop: onDrop,
   onSnapEnd: onSnapEnd,
-  pieceTheme: "/public/img/chesspieces/wikipedia/{piece}.png",
+  pieceTheme: pieceTheme,
+  // Ensure touch support is enabled
+  touchStart: true, // Enable touch start support
+  touchDrag: true, // Enable touch drag support
 };
+
+// Initialize the board
 board = Chessboard("myBoard", config);
-if (playerColor == "black") {
+
+if (playerColor === "black") {
   board.flip();
 }
 
