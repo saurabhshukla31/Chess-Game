@@ -1,5 +1,5 @@
 # Chess-Game
-You can play the game at: https://chess-game-1bam.onrender.com
+You can play the game at : https://chess-game-1bam.onrender.com
 
 This project is a simple online chess game built with Node.js, Chess.js, Chessboard.js, and Socket.io. It allows two players to play chess in real-time over the internet.
 
