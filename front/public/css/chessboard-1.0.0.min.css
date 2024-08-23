@@ -1,0 +1,83 @@
+/*! chessboard.js v1.0.0 | (c) 2019 Chris Oakman | MIT License chessboardjs.com/license */
+.clearfix-7da63 {
+  clear: both;
+}
+
+.board-b72b1 {
+  border: 2px solid #333;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: content-box;
+}
+
+.square-55d63 {
+  float: left;
+  position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.white-1e1d7 {
+  background-color: #dcdcdc;
+  color: #333333;
+}
+
+.black-3c85d {
+  background-color: #ababab;
+  color: #ffffff;
+}
+
+.highlight1-32417,
+.highlight2-9c5d2 {
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.notation-322f9 {
+  cursor: default;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.alpha-d2270 {
+  bottom: 2px;
+  right: 4px;
+}
+
+.numeric-fc462 {
+  top: 2px;
+  left: 4px;
+}
+
+/* Hover effects */
+.square-55d63:hover {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.white-1e1d7:hover {
+  background-color: #d0d0d0;
+}
+
+.black-3c85d:hover {
+  background-color: #9f9f9f;
+}
+
+/* Additional styles for better piece visibility */
+.piece-417db {
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .notation-322f9 {
+    font-size: 10px;
+  }
+}

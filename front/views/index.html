@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+      :root {
+        --primary-color: #3a4750;
+        --secondary-color: #f5f5f5;
+        --accent-color: #00adb5;
+        --hover-color: #303841;
+        --text-color: #e0e0e0;
+        --error-color: #ff5252;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+
+      .container {
+        background-color: #ffffff;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 360px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-align: center;
+      }
+
+      #codeInput {
+        width: 100%;
+        padding: 0.875rem;
+        margin-bottom: 1.25rem;
+        border: 2px solid var(--secondary-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.3s ease;
+      }
+
+      #codeInput:focus {
+        outline: none;
+        border-color: var(--accent-color);
+      }
+
+      button {
+        width: 100%;
+        padding: 0.875rem;
+        margin-bottom: 0.75rem;
+        background-color: #08D9D6;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+      }
+
+      button:hover,
+      button:focus {
+        background-color: var(--hover-color);
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      #errorMessage {
+        color: var(--error-color);
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 2rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        #codeInput,
+        button {
+          font-size: 0.9375rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Enter Game Code</h2>
+      <input type="text" id="codeInput" placeholder="Enter code here" />
+      <button id="createGame">Create Game</button>
+      <button id="joinGame">Join Game</button>
+      <div id="errorMessage"></div>
+    </div>
+    <script>
+      document
+        .getElementById("createGame")
+        .addEventListener("click", function () {
+          const code = document.getElementById("codeInput").value;
+          window.location.replace(`/white?code=${code}`);
+        });
+
+      document
+        .getElementById("joinGame")
+        .addEventListener("click", function () {
+          const code = document.getElementById("codeInput").value;
+          window.location.replace(`/black?code=${code}`);
+        });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("error") === "invalidCode") {
+        document.getElementById("errorMessage").textContent =
+          "Invalid invite code";
+      }
+    </script>
+  </body>
+</html>
